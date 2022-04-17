@@ -44,18 +44,4 @@ export class AppComponent {
       chars.charAt(Math.floor(Math.random() * chars.length))
     ).join('');
   }
-
-  onCopy() {
-    if (this.password) {
-      const copied = from(navigator.clipboard.writeText(this.password));
-      // TODO: send an observable that emits 3s after the message is set
-      copied.pipe(take(1)).subscribe(
-        () => {
-          this.message = 'Copied to clipboard';
-          timer(1500).subscribe(() => (this.message = undefined));
-        },
-        () => (this.message = 'Failed to copy to clipboard')
-      );
-    }
-  }
 }
